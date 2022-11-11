@@ -1,0 +1,19 @@
+// https://leetcode.com/problems/search-insert-position/
+
+var searchInsert = function(nums, target) {
+    let firstIndex = 0, lastIndex = nums.length - 1, mid, result = 0;
+    while(firstIndex <= lastIndex) {
+        mid = parseInt(firstIndex + (lastIndex - firstIndex) / 2);
+        if(nums[mid] === target) return mid;
+        
+        if(nums[mid] < target) {
+            firstIndex = mid + 1;
+            result = mid + 1;
+        }
+        else {
+            lastIndex = mid - 1;
+        }
+    }
+    
+    return result;
+};
