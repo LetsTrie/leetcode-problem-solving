@@ -1,0 +1,29 @@
+// https://leetcode.com/problems/binary-search/
+
+const binarySearch = (nums, leftIndex, rightIndex, target) => {
+    if(leftIndex > rightIndex) return -1;
+    
+    const midIndex = (leftIndex + rightIndex) >> 1;
+    if(nums[midIndex] === target)  return midIndex;
+    
+    if(nums[midIndex] > target) {
+        return binarySearch(nums, leftIndex, midIndex - 1, target);
+    } else if(nums[midIndex] < target) {
+        return binarySearch(nums, midIndex + 1, rightIndex, target);
+    }
+}
+
+var search = function(nums, target) {
+    // return binarySearch(nums, 0, nums.length - 1, target);
+    
+    let leftIndex = 0;
+    let rightIndex = nums.length;
+    
+    while(leftIndex <= rightIndex) {
+        const midIndex = (leftIndex + rightIndex) >> 1;
+        if(nums[midIndex] === target) return midIndex;
+        if(nums[midIndex] < target) leftIndex = midIndex + 1;
+        else rightIndex = midIndex - 1;
+    }
+    return -1;
+};
