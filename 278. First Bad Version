@@ -1,0 +1,18 @@
+// https://leetcode.com/problems/first-bad-version/
+
+var solution = function(isBadVersion) {
+    return function(n) {
+        let firstBad = 0, lastBad = n, answer = n + 1;
+        while(firstBad <= lastBad) {
+            let midBad = parseInt(firstBad + (lastBad - firstBad) / 2);
+            if(isBadVersion(midBad)) {
+                if(answer > midBad) answer = midBad;
+                lastBad = midBad - 1;
+            }
+            else {
+                firstBad = midBad + 1;
+            }
+        }
+        return answer;
+    };
+};
